@@ -35,19 +35,19 @@
                     <h5>About us</h5>
                     <div>
 
-                        <p>Thạch Thất District</p>
-                        <p>Hà Nội, Việt Nam</p>
+                        <p>Đại Học FPT</p>
+                        <p>Khu Công Nghệ Cao Hòa Lạc, Hà Nội, Việt Nam</p>
                     </div>
 
                     <div>
                         <i class=""></i>
-                        <p>0916289176</p>
+                        <p>1800*******</p>
                     </div>
 
                     <div>
                         <i class=""></i>
                         <p>
-                            <a href="mailto:Truongnqse05350@fpt.edu.vn">Truongnqse05350@fpt.edu.vn</a>
+                            <a href="mailto:daihoc@fpt.edu.vn">*********@fpt.edu.vn</a>
                         </p>
                     </div>
 
@@ -56,7 +56,7 @@
                     <h5>Support</h5>
                     <ul>
                         <li>
-                            <a href="HomeLogin.html">Feedback</a>
+                            <a href="feedback.jsp">Feedback</a>
                         </li>
                         <li>
                             <a href="history.html">Introduction</a>
@@ -68,23 +68,23 @@
                 </div>
                 <div class="col-sm-2">
                     <div class="social-networks">
-                        <a href="https://www.facebook.com/profile.php?id=100004662783694" class="twitter">
+                        <a href="https://twitter.com/?lang=vi" class="twitter">
                             <i class="">
                                 <img src="media/twitter.png" alt="" width="30px" height="30px">
                             </i>
                         </a>
-                        <a href="https://www.facebook.com/beovuive1" class="facebook">
+                        <a href="https://www.facebook.com/" class="facebook">
                             <i class="">
                                 <img src="media/facebook.png" alt="" width="30px" height="30px">
                             </i>
                         </a>
-                        <a href="https://www.facebook.com/t0ank55" class="youtube">
+                        <a href="https://www.youtube.com/" class="youtube">
                             <i class="">
                                 <img src="media/youtube.png" alt="" width="30px" height="30px">
                             </i>
                         </a>
                     </div>
-                    <a href="feedback.html">
+                    <a href="feedback.jsp">
                         <button type="button" class="btn btn-default">Feedback</button>
                     </a>
                 </div>

@@ -12,11 +12,31 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Home - FlashTrans</title>
         <jsp:include page="header.jsp"/>
+        <jsp:useBean id="orders" class="DAO.orderDAO"/>
+        
     </head>
     <body>
-        // homepage
+        <div class='container' style="margin-top: 10px">
+
+            <div class="row1">
+                <button class="btn btn-success col-xs-12">Top 10 Recent Order</button>
+            </div>
+            <div class="row1">
+                <c:forEach var="v" items='${orders.getTop("0","")}'>
+                    <jsp:include page="orderThumb.jsp?id=${v}" />
+                    <%--<jsp:include page="orderThumb.jsp?id=${v}" />--%>
+                </c:forEach>
+                <</div>
+            <center>
+                <a class="btn btn-primary" href="orders.jsp?page=0">More</a>
+            </center>
+
+        </div>
+
     </body>
     <footer>
+
+
         <jsp:include page="footer.jsp"/>
     </footer>
 </html>

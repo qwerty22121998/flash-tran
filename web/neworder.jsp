@@ -17,7 +17,7 @@
             #map {
                 width: 100%;
                 height: 400px;
-            background-color: grey;
+                background-color: grey;
             }
             .green {
                 color: green
@@ -70,7 +70,7 @@
                     </div>
                     <div class="input-group2 input-group-icon">
                         <input type="text" value="Start Date" style="width: 40%" readonly="true"/>
-                        <input id="start-date" name="start-date" type="date" style="width: 59%" readonly="true" />
+                        <input id="start-date" name="start-date" type="date" style="width: 59%" readonly/>
                         <div class="input-icon">
                             <i class="fa fa-calendar-check-o"></i>
                         </div>
@@ -118,7 +118,7 @@
                 return local.toJSON().slice(0, 10);
             });
             $(document).ready(() => {
-                loadItemToMap('map', 'startAd', 'endAd');
+                loadItemToMap('map', 'startAd', 'endAd', true);
                 $("#start-date").val(new Date().toDateInputValue());
                 $("#expired-date").val(new Date().toDateInputValue());
             })

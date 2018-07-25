@@ -9,6 +9,7 @@ import Db.DBContext;
 import Entity.Order;
 import java.sql.Connection;
 import java.sql.ResultSet;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Random;
 import java.util.logging.Level;
@@ -43,7 +44,24 @@ public class orderDAO {
             newOrder.setId(id);
             String query = String.format("insert into [order] (id, [uid], shipid, start, dest, price, startDate, expiredDate, rName, rPhone, [desc], name)\n"
                     + "values ('%d', N'%s', N'%s', N'%s', N'%s', N'%s', N'%s',N'%s', N'%s', N'%s', N'%s', N'%s')", id, newOrder.getUid(), newOrder.getShipid(), newOrder.getStart(), newOrder.getDest(), newOrder.getPrice(), Util.DateToString(newOrder.getStartDate()), Util.DateToString(newOrder.getExpiredDate()), newOrder.getrName(), newOrder.getrPhone(), newOrder.getDesc(), newOrder.getName());
-            System.out.println(query);
+            return DBContext.getConnection().prepareStatement(query).executeUpdate();
+        } catch (Exception ex) {
+            return 0;
+        }
+    }
+
+    public int AcceptOrder(int oid, String uid) {
+        try {
+            String query = "update [order] set shipid = '" + uid + "' where id = " + oid;
+            return DBContext.getConnection().prepareStatement(query).executeUpdate();
+        } catch (Exception ex) {
+            return 0;
+        }
+    }
+
+    public int DeleteOrder(int oid) {
+        try {
+            String query = "delete from [order] where id=" + oid;
             return DBContext.getConnection().prepareStatement(query).executeUpdate();
         } catch (Exception ex) {
             return 0;
@@ -53,6 +71,7 @@ public class orderDAO {
     public Order getOrder(int id) {
         try {
             String query = "select * from [order] where id=" + id;
+            System.out.println(query);
             ResultSet result = DBContext.getConnection().prepareStatement(query).executeQuery();
             if (!result.next()) {
                 return null;
@@ -71,10 +90,33 @@ public class orderDAO {
             rPhone = result.getString(10);
             desc = result.getString(11);
             name = result.getString(12);
-            return new Order(uid, shipid, start, dest, name, price, rName, rPhone, desc, startDate, expiredDate);
-
+            Order resOrder = new Order(uid, shipid, start, dest, name, price, rName, rPhone, desc, startDate, expiredDate);
+            resOrder.setId(id);
+            return resOrder;
         } catch (Exception ex) {
             return null;
         }
     }
+
+    public ArrayList<Integer> getTop(String page, String con) {
+        ArrayList<Integer> res = new ArrayList();
+        int p = Integer.valueOf(page);
+        try {
+            String query = "select id from [order] " + con + " order by startDate ";
+            System.out.println(query);
+            ResultSet result = DBContext.getConnection().prepareStatement(query).executeQuery();
+            int index = 0;
+            while (result.next()) {
+                int id = result.getInt(1);
+                if (index >= p * 10 && index < p * 10 + 10) {
+                    res.add(id);
+                }
+                index++;
+            }
+        } catch (Exception ex) {
+
+        }
+        return res;
+    }
+
 }

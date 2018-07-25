@@ -615,10 +615,13 @@ select option {
     max-width: 38em;
     padding: 1em 1em 5em 100px;
     margin: 0em 0em 0em 25em;
-    background-color: #fff;
+    /*background-color: #fff;*/
     border-radius: 4.2px;
 }
 
+.green {
+    color:green;    
+}
 .row1 {
     zoom: 1;
 }
@@ -742,6 +745,9 @@ select option {
     border-radius: 4.2px;
 
 }
+
+
+
 .container2 {
     max-width: 70em;
     height: 55em;
@@ -801,3 +807,10 @@ select option {
     border-style: dotted;
     margin-left: 0px;
 }
+
+
+body {
+    background-color: #ebf7e3;
+}
+
+

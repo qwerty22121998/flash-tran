@@ -77,8 +77,8 @@ placeMarker = (searchBox, points, map) => {
     map.fitBounds(bounds);
 };
 
-loadItemToMap = (mapId, startId, endId, lat = 21.0133687, lng = 105.5251002) => {
-
+loadItemToMap = (mapId, startId, endId, con) => {
+    lat = 21.0133687, lng = 105.5251002;
 
     let directionsService = new google.maps.DirectionsService;
     let directionsDisplay = new google.maps.DirectionsRenderer;
@@ -88,36 +88,39 @@ loadItemToMap = (mapId, startId, endId, lat = 21.0133687, lng = 105.5251002) => 
         mapTypeId: 'roadmap'
     });
     directionsDisplay.setMap(map);
-    let inputStart = document.getElementById(startId);
-    let inputEnd = document.getElementById(endId);
-    let searchBoxStart = new google.maps.places.SearchBox(inputStart);
-    let searchBoxEnd = new google.maps.places.SearchBox(inputEnd);
-    // Bias the SearchBox results towards current map's viewport.
-    map.addListener('bounds_changed', () => {
-        searchBoxEnd.setBounds(map.getBounds());
-        searchBoxStart.setBounds(map.getBounds());
-    });
-    let fromP = {query: document.getElementById(startId).value};
-    let destP = {query: document.getElementById(endId).value};
-    let placeSearch = new google.maps.places.PlacesService(map);
-    placeSearch.textSearch(fromP, (results, status) => {
-        if (status === google.maps.places.PlacesServiceStatus.OK) {
-            //grab the first item, Orlando, Florida, USA
-            var from = results[0];
-            placeSearch.textSearch(destP, (results1, status1) => {
-                if (status1 === google.maps.places.PlacesServiceStatus.OK) {
-                    //grab the first item, Orlando, Florida, USA
-                    var to = results1[0];
-                    calculateAndDisplayRoutePlace(from, to, directionsService, directionsDisplay, map);
-                }
-            });
-        }
-    })
+    if (con) {
+        let inputStart = document.getElementById(startId);
+        let inputEnd = document.getElementById(endId);
+        let searchBoxStart = new google.maps.places.SearchBox(inputStart);
+        let searchBoxEnd = new google.maps.places.SearchBox(inputEnd);
+        // Bias the SearchBox results towards current map's viewport.
+        map.addListener('bounds_changed', () => {
+            searchBoxEnd.setBounds(map.getBounds());
+            searchBoxStart.setBounds(map.getBounds());
+        });
+        searchBoxEnd.addListener('places_changed', () => calculateAndDisplayRoute(searchBoxStart, searchBoxEnd,
+                    directionsService, directionsDisplay, map));
+        searchBoxStart.addListener('places_changed', () => calculateAndDisplayRoute(searchBoxStart, searchBoxEnd,
+                    directionsService, directionsDisplay, map));
+    }
 
-
-
-    searchBoxEnd.addListener('places_changed', () => calculateAndDisplayRoute(searchBoxStart, searchBoxEnd,
-                directionsService, directionsDisplay, map));
-    searchBoxStart.addListener('places_changed', () => calculateAndDisplayRoute(searchBoxStart, searchBoxEnd,
-                directionsService, directionsDisplay, map));
+    if (!con) {
+        let fromP = {query: document.getElementById(startId).value};
+        let destP = {query: document.getElementById(endId).value};
+        let placeSearch = new google.maps.places.PlacesService(map);
+        placeSearch.textSearch(fromP, (results, status) => {
+            if (status === google.maps.places.PlacesServiceStatus.OK) {
+                //grab the first item, Orlando, Florida, USA
+                var from = results[0];
+                placeSearch.textSearch(destP, (results1, status1) => {
+                    if (status1 === google.maps.places.PlacesServiceStatus.OK) {
+                        //grab the first item, Orlando, Florida, USA
+                        var to = results1[0];
+                        calculateAndDisplayRoutePlace(from, to, directionsService, directionsDisplay, map);
+                    }
+                });
+            }
+        });
+    }
 }
+;

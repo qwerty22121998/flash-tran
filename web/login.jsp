@@ -47,9 +47,9 @@
 
 
                     <div class="row1" style="margin-top: 5%">
-                        <div class="col-half testsign">Forgot your password?</div>
+                        <div class="col-half testsign" disable>Forgot your password?</div>
                         <div class="col-half testsign">Don't have an account?
-                            <a href="SignUp.html"> Sign Up!</a>
+                            <a href="register.jsp"> Sign Up!</a>
                         </div>
                     </div>
 

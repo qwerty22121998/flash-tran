@@ -15,11 +15,12 @@
         type="text/javascript"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-        <link rel="stylesheet" type="text/css" href="project.css">
+
         <link rel="stylesheet" href=
               "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
         <link rel="stylesheet" href="bootstrap.min.css">
         <script type="text/javascript" src="bootstrap-4.0.0-dist/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="project.css">
     </head>
 
     <body>
@@ -64,23 +65,26 @@
                         </a>
                     </li>
                     <li class="nav-item dropdown">
-                        <a href="created-order.jsp" class="nav-link dropbtn"> 
-                            <span class="fa fa-archive"> </span>My Order
+                        <a href="orders.jsp?page=0" class="nav-link dropbtn"> 
+                            <span class="fa fa-archive"> </span>Orders
                         </a>
                         <ul class="dropdown-content">
-                            <li>
+                            <c:if test="${not empty loggedin}">
+                                <li>
 
-                                <a href="created-order.jsp">
-                                    <span class="fa fa-star"></span>
-                                    Created Order
-                                </a>
-                            </li>
-                            <li>
-                                <a href="management-order.jsp">
-                                    <span class="fa fa-key"></span>
-                                    Management Order
-                                </a>
-                            </li>
+                                    <a href="orders.jsp?page=0&uid=${sessionScope.user.username}">
+                                        <span class="fa fa-star"></span>
+                                        Created Order
+                                    </a>
+
+                                </li>
+                                <li>
+                                    <a href="orders.jsp?page=0&shipid=${sessionScope.user.username}">
+                                        <span class="fa fa-key"></span>
+                                        Taked Order
+                                    </a>
+                                </li>
+                            </c:if>
                         </ul>
                     </li>
                     <li>
@@ -91,9 +95,9 @@
 
                     </li>
                 </ul>
-                <form class="navbar-form navbar-left" action="home.jsp">
+                <form class="navbar-form navbar-left" action="order.jsp">
                     <div class="input-group form-group">
-                        <input type="text" name="search" class="form-control" placeholder="Search">
+                        <input type="text" name="id" class="form-control" placeholder="Enter your order ID">
                         <div class="input-group-btn">
                             <button type="submit" class="btn btn-info fa fa-search"></button>
                         </div>
