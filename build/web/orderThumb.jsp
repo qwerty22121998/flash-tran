@@ -19,7 +19,7 @@
     }
 
     .l {
-        background-color: #ebf7e3;
+        background-color: #b7e2c2;
         width: 70%;
         height: 18em;
         margin: 1em 1em 0 15%;

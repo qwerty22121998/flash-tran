@@ -17,7 +17,9 @@
             #map {
                 width: 100%;
                 height: 400px;
-                background-color: grey;
+                background-color: white;
+                border-style: solid;
+                border-color: graytext;
             }
             .green {
                 color: green
@@ -34,10 +36,10 @@
             <form action="neworder">
                 <h1 class="green"> Create New Orders </h1>
 
-                <div class="xdiv1">
+                <div class="col-xs-5">
                     <div id="map"></div>
                 </div>
-                <div class="xdiv2">
+                <div class="col-xs-7">
                     <div class="input-group2 input-group-icon">
                         <input type="text" name="uid" value="${sessionScope.user.username}" placeholder="Owner " readonly>
                         <div class="input-icon">

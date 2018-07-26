@@ -17,7 +17,9 @@
             #map {
                 width: 100%;
                 height: 400px;
-                background-color: grey;
+                background-color: white;
+                border-style: solid;
+                border-color: graytext;
             }
             .green {
                 color: green
@@ -37,7 +39,7 @@
                     <div class="col-xs-5">
                         <div id="map"></div>
                     </div>
-                    <div class="col-xs-5">
+                    <div class="col-xs-7">
                         <center class="input-group2 input-group-icon">
                             <a href="profile.jsp?uid=${order.uid}" class="btn btn-success">Owner : ${order.uid}</a>
                             <a href="profile.jsp?uid=${order.shipid}" class="btn btn-${empty order.shipid ? "danger" : "info"}">Shipper : ${empty order.shipid ? "Not Yet" : order.shipid}</a>

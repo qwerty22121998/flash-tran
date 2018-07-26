@@ -42,7 +42,7 @@
                 <div class="">
                     <div class="logo">
                         <a href="home.jsp">
-                            <img style="width: 500px; height: 100px;" class="img-responsive" src="media/logo.png" alt="Logo">
+                            <img class="img-responsive" src="media/logo.png" alt="Logo">
                         </a>
                     </div>
 
