@@ -44,17 +44,18 @@ public class CreateOrder extends HttpServlet {
             String rName = request.getParameter("rName");
             String rPhone = request.getParameter("rPhone");
             String desc = request.getParameter("desc");
-            
+
+
             Order newOrder = new Order(uid, null, start, dest, name, price, rName, rPhone, desc, DAO.Util.StringToDate(startDate), DAO.Util.StringToDate(expireDate));
-            
+
             int change = new orderDAO().InsertOrder(newOrder);
-            
+
             if (change == 0) {
                 response.sendRedirect("neworder.jsp?error=1");
             } else {
                 response.sendRedirect("order.jsp?id=" + newOrder.getId());
             }
-            
+
         }
     }
 

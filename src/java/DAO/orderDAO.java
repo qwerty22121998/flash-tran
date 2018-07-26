@@ -102,7 +102,7 @@ public class orderDAO {
         ArrayList<Integer> res = new ArrayList();
         int p = Integer.valueOf(page);
         try {
-            String query = "select id from [order] " + con + " order by startDate ";
+            String query = "select id from [order] " + con + " order by startDate decrease";
             System.out.println(query);
             ResultSet result = DBContext.getConnection().prepareStatement(query).executeQuery();
             int index = 0;
